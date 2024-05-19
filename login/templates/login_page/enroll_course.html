@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Homepage</title>
+    <style>
+        body {
+            background-color: #f0f8ff; 
+            color: #000080; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #fff;
+            background-color: #3498db; /* Blue color */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #000080; 
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0000cd; 
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        li strong {
+            color: #000080;
+        }
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+<h1>Student Management System</h1>
+<div class="container">
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <div class="button-container">
+            <button onclick="location.href='{% url 'add_course' %}'">Registration</button>
+            <button onclick="location.href='{% url 'enroll_course' %}'">Enrolled Courses</button>
+            <button onclick="location.href='{% url 'student_view_grades' %}'">View Grades</button>
+            <button onclick="location.href='{% url 'student_view_profile' %}'">View Profile</button>
+            <button onclick="location.href='{% url 'logout' %}'">Logout</button>
+        </div>
+        <h3>Enrolled Courses:</h3>
+        <ul>
+            {% for course in courses %}
+            <li>
+                <strong>{{ course.course_name }}</strong> ({{ course.course_id }})<br>
+                <span>Instructor: {{ course.instructor }}</span><br>
+                <span>Credit Hours: {{ course.credit_hours }}</span><br>
+                <span>Start Time: {{ course.start_time }}</span><br>
+                <span>End Time: {{ course.end_time }}</span><br>
+                <span>Days of Week: {{ course.days_of_week }}</span><br>
+                <p>Course ID: {{ course.course_id }}</p> 
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login_form' %}">Log In</a>
+    {% endif %}
+</div>
+</body>
+</html>

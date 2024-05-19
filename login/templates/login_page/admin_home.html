@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Homepage</title>
+    <style>
+        body {
+            background-color: #ffffff; 
+            color: #000080; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            position: relative; 
+        }
+        h2 {
+            color: #000080; 
+        }
+        button {
+            background-color: #000080; 
+            color: #ffffff; 
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px; 
+            right: 10px; 
+        }
+        button:hover {
+            background-color: #0000cd; 
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome to the Admin Home Page</h2>
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login_form' %}"> Log In </a>
+    {% endif %}
+
+    <button onclick="location.href='{% url 'logout' %}'">Logout</button>
+</body>
+</html>

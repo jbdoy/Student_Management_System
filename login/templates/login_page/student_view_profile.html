@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        
+        .profile-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-details {
+            margin-bottom: 20px;
+        }
+        
+        .profile-details p {
+            margin: 5px 0;
+        }
+        
+        .edit-button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .edit-button {
+            padding: 8px 16px; /* Adjust padding to your preference */
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .edit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Student Profile</h1>
+        <div class="profile-details">
+            <p><strong>Student ID:</strong> {{ user.id}}</p>
+            <p><strong>First Name:</strong> {{user.first_name}}</p>
+            <p><strong>Last Name:</strong> {{user.last_name}}</p>
+            <p><strong>Date of Birth:</strong> {{ user.dateofbirth }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phonenumber }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <div class="edit-button-container">
+            <a href="{% url 'home' %}" class="edit-button">Back to Home</a>
+            <a href="{% url 'student_edit_profile' %}" class="edit-button">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

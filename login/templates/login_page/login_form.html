@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* AliceBlue */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h2 {
+            color: #000080; /* Navy */
+        }
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 400px;
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #000080; /* Navy */
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #000080; /* Navy */
+            color: #ffffff; /* White */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0000cd; /* MediumSlateBlue */
+        }
+        p {
+            margin-top: 20px;
+            color: #000080; /* Navy */
+        }
+        a {
+            color: #000080; /* Navy */
+            font-weight: bold;
+        }
+        a:hover {
+            color: #0000cd; /* MediumSlateBlue */
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Login</h2>
+    <form method="post" action="{% url 'login_form' %}">
+        {% csrf_token %}
+        {% if error %}
+            <script>
+                alert("{{ error }}");
+            </script>
+        {% endif %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+    
+    <p>Don't have an account? <a href="{% url 'register_form' %}">Register here</a></p>
+    
+    <p>Login as admin? <a href="{% url 'admin_login' %}">Login</a></p>
+</body>
+</html>
